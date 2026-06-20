@@ -1,0 +1,185 @@
+.pls-screen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000000, #0a0a0a, #0d0d0d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  animation: plsFadeIn 0.4s ease forwards;
+}
+
+.pls-screen.pls-fade-out {
+  animation: plsFadeOut 0.4s ease forwards;
+}
+
+@keyframes plsFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes plsFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── Floating particles ── */
+.pls-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pls-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 107, 53, 0.5);
+  left: calc(var(--i) * 8.5%);
+  bottom: -10px;
+  animation: particleRise calc(3s + var(--i) * 0.3s) ease-in infinite;
+  animation-delay: calc(var(--i) * 0.25s);
+}
+
+@keyframes particleRise {
+  0%   { transform: translateY(0) scale(1); opacity: 0.6; }
+  80%  { opacity: 0.3; }
+  100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
+}
+
+/* ── Center content ── */
+.pls-content {
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+/* ── Logo with pulsing rings ── */
+.pls-logo-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.pls-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 107, 53, 0.4);
+}
+
+.pls-ring-1 {
+  width: 100%;
+  height: 100%;
+  animation: ringPulse 1.8s ease-out infinite;
+}
+
+.pls-ring-2 {
+  width: 140%;
+  height: 140%;
+  animation: ringPulse 1.8s ease-out infinite 0.6s;
+}
+
+@keyframes ringPulse {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.pls-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  animation: logoFlicker 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 16px #ff6b35);
+}
+
+@keyframes logoFlicker {
+  0%, 100% { filter: drop-shadow(0 0 14px #ff6b35); transform: scale(1); }
+  50%       { filter: drop-shadow(0 0 32px #ff6b35) drop-shadow(0 0 60px #f7931e); transform: scale(1.06); }
+}
+
+/* ── Title ── */
+.pls-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff6b35, #f7931e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 5px;
+  margin-bottom: 6px;
+}
+
+.pls-subtitle {
+  color: #777;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 44px;
+}
+
+/* ── Progress bar ── */
+.pls-progress-wrap {
+  width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.pls-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.pls-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b35, #f7931e);
+  border-radius: 99px;
+  transition: width 0.05s linear;
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.7);
+}
+
+.pls-percent {
+  color: #ff6b35;
+  font-size: 0.78rem;
+  font-weight: 600;
+  min-width: 34px;
+  text-align: right;
+}
+
+/* ── Cycling message ── */
+.pls-msg {
+  color: #888;
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  animation: msgFade 0.6s ease;
+  min-height: 20px;
+}
+
+@keyframes msgFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .pls-title { font-size: 2rem; }
+  .pls-logo-wrap { width: 90px; height: 90px; }
+  .pls-logo { width: 60px; height: 60px; }
+  .pls-progress-wrap { width: 200px; }
+}
